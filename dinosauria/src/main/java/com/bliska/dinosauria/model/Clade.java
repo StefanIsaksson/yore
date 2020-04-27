@@ -36,5 +36,17 @@ public class Clade {
     public void setDinosaurs(Set<Dinosaur> dinosaurs) {
         this.dinosaurs = dinosaurs;
     }
+
+    public Clade addDinosaur(Dinosaur dinosaur){
+        dinosaur.setClade(this);
+        this.dinosaurs.add(dinosaur);
+        return this;
+    }
+
+    public Clade removeDinosaur(Dinosaur dinosaur){
+        dinosaur.setClade(null);
+        this.dinosaurs.remove(dinosaur);
+        return this;
+    }
 }
 

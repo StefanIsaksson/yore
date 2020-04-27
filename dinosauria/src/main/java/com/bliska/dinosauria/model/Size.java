@@ -56,6 +56,9 @@ public class Size {
     }
 
     public void setDinosaur(Dinosaur dinosaur) {
+        if(dinosaur.getSize() != null && !dinosaur.getSize().equals(this)){
+            dinosaur.setSize(this);
+        }
         this.dinosaur = dinosaur;
     }
 }

@@ -24,32 +24,23 @@ public class TyrannosaurursService {
 
     @Transactional
     public void saveTyrannosaurus() {
-        Dinosaur tyrannosaurus = new Dinosaur("Tyrannosaurus", "The third largest meat-eating dinosaur of all time.");
-
-        tyrannosaurus.setEpoch(Epoch.CRETACEOUS);
-
-        Size size = new Size(6L, 12L,140000L);
-        size.setDinosaur(tyrannosaurus);
-        tyrannosaurus.setSize(size);
 
         Optional<Clade> cladeOptional = cladeRepository.findByName("Theropoda");
         Clade clade = cladeOptional.orElse(new Clade("Theropoda"));
-        tyrannosaurus.setClade(clade);
 
-        Optional<FossilSite> usaOptional = fossileSiteRepository.findByName("USA");
-        FossilSite usa = usaOptional.orElse(new FossilSite("USA"));
-        usa.getDinosaurs().add(tyrannosaurus);
-        tyrannosaurus.getFossilSites().add(usa);
+        FossilSite usa = fossileSiteRepository.findByName("USA").orElse(new FossilSite("USA"));
+        FossilSite canada = fossileSiteRepository.findByName("Canada").orElse(new FossilSite("Canada"));
+
+        Dinosaur tyrannosaurus = new Dinosaur("Tyrannosaurus", "The third largest meat-eating dinosaur of all time.", Epoch.CRETACEOUS);
+        tyrannosaurus.setSize(new Size(6L, 12L,140000L));
+
+        tyrannosaurus.addFossilSite(usa).addFossilSite(canada).removeFossilSite(usa);
+
         fossileSiteRepository.save(usa);
-
-        Optional<FossilSite> canadaOptional = fossileSiteRepository.findByName("Canada");
-        FossilSite canada = canadaOptional.orElse(new FossilSite("Canada"));
-        canada.getDinosaurs().add(tyrannosaurus);
-        tyrannosaurus.getFossilSites().add(canada);
         fossileSiteRepository.save(canada);
 
+        clade.addDinosaur(tyrannosaurus);
         dinosaurRepository.save(tyrannosaurus);
-        clade.getDinosaurs().add(tyrannosaurus);
     }
 
 }

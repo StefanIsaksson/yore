@@ -36,9 +36,11 @@ public class Dinosaur {
     public Dinosaur() {
     }
 
-    public Dinosaur(String name, String description) {
+    public Dinosaur(String name, String description, Epoch epoch) {
         this.name = name;
-        this.description = description; }
+        this.description = description;
+        this.epoch = epoch;
+    }
 
     public Long getId() {
         return id;
@@ -73,6 +75,9 @@ public class Dinosaur {
     }
 
     public void setSize(Size size) {
+        if(size.getDinosaur() != null && !size.getDinosaur().equals(this)){
+            size.setDinosaur(this);
+        }
         this.size = size;
     }
 
@@ -94,6 +99,18 @@ public class Dinosaur {
 
     public Set<FossilSite> getFossilSites() {
         return fossilSites;
+    }
+
+    public Dinosaur addFossilSite(FossilSite fossilSite){
+        fossilSite.getDinosaurs().add(this);
+        fossilSites.add(fossilSite);
+        return this;
+    }
+
+    public Dinosaur removeFossilSite(FossilSite fossilSite){
+        fossilSite.getDinosaurs().remove(this);
+        this.fossilSites.remove(fossilSite);
+        return this;
     }
 
     public void setFossilSites(Set<FossilSite> fossilSites) {
