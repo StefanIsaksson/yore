@@ -28,7 +28,6 @@ public class Dinosaur {
     private Size size;
     @Lob
     private byte[] image;
-
     @ManyToMany
     @JoinTable(name = "DINOSAUR_FOSSILE_SITE",
             joinColumns = @JoinColumn(name = "dinosaur_id"),

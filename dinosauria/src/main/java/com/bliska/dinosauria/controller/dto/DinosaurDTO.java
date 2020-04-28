@@ -13,17 +13,6 @@ public @Data class DinosaurDTO {
     private Long height;
     private Long length;
     private Long weight;
-    private List<String> fossileSites;
-
-    public DinosaurDTO(String name, String clade, String description, String epoch, Long height, Long length, Long weight, List<String> fossileSites) {
-        this.name = name;
-        this.clade = clade;
-        this.description = description;
-        this.epoch = epoch;
-        this.height = height;
-        this.length = length;
-        this.weight = weight;
-        this.fossileSites = fossileSites;
-    }
+    private List<String> fossilSites;
 
 }

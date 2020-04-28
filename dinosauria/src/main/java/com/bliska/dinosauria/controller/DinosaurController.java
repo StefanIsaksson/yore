@@ -1,6 +1,7 @@
 package com.bliska.dinosauria.controller;
 
 import com.bliska.dinosauria.controller.dto.DinosaurDTO;
+import com.bliska.dinosauria.controller.dto.mapper.DinosaurMapper;
 import com.bliska.dinosauria.model.Dinosaur;
 import com.bliska.dinosauria.repository.DinosaurRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,17 +26,7 @@ public class DinosaurController {
         List<Dinosaur> entities = new ArrayList<>();
         repository.findAll().iterator().forEachRemaining(entities::add);
 
-        List<DinosaurDTO> dinosaurs = entities.stream().map(x -> new DinosaurDTO(
-                x.getName(),
-                x.getClade().getName(),
-                x.getDescription(),
-                x.getEpoch().toString(),
-                x.getSize().getHeight(),
-                x.getSize().getLength(),
-                x.getSize().getWeight(),
-                x.getFossilSites().stream().map(y -> y.getName()).collect(Collectors.toList())
-                )
-        ).collect(Collectors.toList());
+        List<DinosaurDTO> dinosaurs = entities.stream().map(DinosaurMapper.INSTANCE::dinosaurToDinosaurDTO).collect(Collectors.toList());
 
         return dinosaurs;
     }
