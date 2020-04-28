@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface FossileSiteRepository extends CrudRepository<FossilSite, Long> {
+public interface FossilSiteRepository extends CrudRepository<FossilSite, Long> {
 
     Optional<FossilSite> findByName(String name);
 

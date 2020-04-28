@@ -1,8 +1,13 @@
 package com.bliska.dinosauria.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class Size {
 
     @Id
@@ -21,38 +26,6 @@ public class Size {
         this.height = height;
         this.length = length;
         this.weight = weight;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getHeight() {
-        return height;
-    }
-
-    public void setHeight(Long height) {
-        this.height = height;
-    }
-
-    public Long getLength() {
-        return length;
-    }
-
-    public void setLength(Long length) {
-        this.length = length;
-    }
-
-    public Long getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
-    public Dinosaur getDinosaur() {
-        return dinosaur;
     }
 
     public void setDinosaur(Dinosaur dinosaur) {
