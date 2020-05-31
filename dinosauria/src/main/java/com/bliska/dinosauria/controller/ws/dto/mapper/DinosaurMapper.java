@@ -1,6 +1,6 @@
-package com.bliska.dinosauria.controller.dto.mapper;
+package com.bliska.dinosauria.controller.ws.dto.mapper;
 
-import com.bliska.dinosauria.controller.dto.DinosaurDTO;
+import com.bliska.dinosauria.controller.ws.dto.DinosaurDTO;
 import com.bliska.dinosauria.model.Dinosaur;
 import com.bliska.dinosauria.model.FossilSite;
 import org.mapstruct.Mapper;
@@ -22,6 +22,5 @@ public abstract class DinosaurMapper {
     protected String fossilSiteToString(FossilSite fossilSite) {
         return fossilSite.getName();
     }
-
 
 }
